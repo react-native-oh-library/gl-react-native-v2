@@ -1,6 +1,6 @@
 {
-  "name": "glrn",
-  "version": "1.0.0",
+  "name": "@react-native-oh-tpl/gl-react-native",
+  "version": "2.57.1-rc.1",
   "description": "Please describe the basic information.",
   "main": "Index.ets",
   "author": "",
