@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "glRN",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}

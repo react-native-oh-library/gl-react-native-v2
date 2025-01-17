@@ -45,11 +45,13 @@ export default C => {
     return <C.GLCanvas ref="canvas" {...props} />;
   };
 
-  return createSurface(
+  const result = createSurface(
     renderVcontainer,
     renderVcontent,
     renderVGL,
     getPixelRatio,
     C.getGLCanvas,
   );
+  console.log('%c  result:', 'color: #0e93e0;background: #aaefe5;', result);
+  return result
 };

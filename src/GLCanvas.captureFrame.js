@@ -1,11 +1,11 @@
 import invariant from "invariant";
-import { NativeModules } from "react-native";
-const { GLCanvasManager } = NativeModules;
+import GLCanvasManager from './spec/turbomodule/NativeGLCanvasModule'
+
 invariant(GLCanvasManager,
 `gl-react-native: the native module is not available.
 Make sure you have properly configured it.
 See README install instructions.
 
-NativeModules.GLCanvasManager is %s`, GLCanvasManager);
+GLCanvasManager is %s`, GLCanvasManager);
 
 module.exports = (handle, config) => GLCanvasManager.capture(handle, config);
