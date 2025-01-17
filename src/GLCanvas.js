@@ -1,28 +1,22 @@
 import invariant from "invariant";
 import React, {Component} from "react";
-import {requireNativeComponent, findNodeHandle, processColor} from "react-native";
+import {findNodeHandle, processColor} from "react-native";
 import captureFrame from "./GLCanvas.captureFrame";
+import GLCanvasNative from './spec/fabric/RNCGLCanvasNativeComponent'
 
 const serializeOption = config =>
 config.format + ":" + config.type + ":" + config.quality;
 
-const GLCanvasNative = requireNativeComponent("GLCanvas", GLCanvas, {
-  nativeOnly: {
-    onGLChange: true,
-    onGLProgress: true,
-    onGLCaptureFrame: true
-  }
-});
+export default class GLCanvas extends Component {
 
-class GLCanvas extends Component {
+  constructor(props) {
+    super(props)
+    this._pendingCaptureFrame = {};
+  }
 
   viewConfig = {
     uiViewClassName: "GLCanvas"
   };
-
-  componentWillMount () {
-    this._pendingCaptureFrame = {};
-  }
 
   componentWillUnmount () {
     Object.keys(this._pendingCaptureFrame).forEach(key =>
@@ -114,11 +108,11 @@ class GLCanvas extends Component {
 
   render () {
     const {
-      width, height, style,
+      width, height, style = {},
       onLoad, onProgress, eventsThrough,
       ...restProps } = this.props;
-    const { backgroundColor } = style;
-
+      const { backgroundColor } = style;
+      
     return <GLCanvasNative
       ref="native"
       {...restProps}
@@ -132,4 +126,3 @@ class GLCanvas extends Component {
   }
 }
 
-module.exports = GLCanvas;
